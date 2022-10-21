@@ -28,3 +28,9 @@ class FileChunk(models.Model):
 
     class Meta:
         ordering = ['index']
+        constraints = [
+            models.UniqueConstraint(
+                fields=['file', 'index'],
+                name='file_chunk_index_unique'
+            )
+        ]

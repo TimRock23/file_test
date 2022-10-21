@@ -131,3 +131,4 @@ dmypy.json
 media/*
 
 test.py
+.DS_Store

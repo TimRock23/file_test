@@ -12,7 +12,7 @@ def max_file_size(value):
     return value
 
 
-def unique_name(value):
+def unique_file_name(value):
     filename = value.name
     
     if UploadedFile.objects.filter(name=filename).exists():

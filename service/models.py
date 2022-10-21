@@ -7,7 +7,7 @@ User = get_user_model()
 
 
 class UploadedFile(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     dir_path = models.FilePathField(allow_files=False, allow_folders=True)
     size = models.PositiveIntegerField(

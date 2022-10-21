@@ -6,5 +6,7 @@ from . import views
 app_name = 'service' 
 
 urlpatterns = [
-    path('upload/', views.upload_file, name='upload_file')
+    path('', views.index, name='index'),
+    path('upload/', views.upload_file, name='upload'),
+    path('download/', views.download_file, name='download'),
 ]

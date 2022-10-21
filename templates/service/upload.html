@@ -3,7 +3,7 @@
 {% block title %}Upload file{% endblock %}
 
 {% block content%}
-    <form method='post' action={% url 'service:upload_file' %} enctype="multipart/form-data">
+    <form method='post' action={% url 'service:upload' %} enctype="multipart/form-data">
         {% csrf_token %}
         {% include 'includes/form.html' %}
         <div>

@@ -11,7 +11,7 @@ class UploadedFile(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     dir_path = models.FilePathField(allow_files=False, allow_folders=True)
     size = models.PositiveIntegerField(
-        validators=[MaxValueValidator(settings.MAX_FIELD_SIZE)]
+        validators=[MaxValueValidator(settings.MAX_FILE_SIZE)]
     )
 
 
@@ -21,7 +21,6 @@ class FileChunk(models.Model):
     index = models.PositiveSmallIntegerField(
         validators=[MaxValueValidator(settings.MAX_FILE_CHUNKS_COUNT)]
     )
-    path = models.FilePathField()
     size = models.PositiveIntegerField(
         validators=[MaxValueValidator(settings.MAX_CHUNK_SIZE)]
     )

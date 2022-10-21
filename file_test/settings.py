@@ -83,6 +83,24 @@ USE_I18N = True
 USE_TZ = True
 
 
+TEMPLATES_DIR = BASE_DIR / 'templates' 
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [TEMPLATES_DIR],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
 STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
@@ -91,5 +109,5 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MAX_FILE_CHUNKS_COUNT = 16
-MAX_CHUNK_SIZE = 1048576
-MAX_FIELD_SIZE = 16777216
+MAX_CHUNK_SIZE = 2 ** 20
+MAX_FILE_SIZE = MAX_CHUNK_SIZE * MAX_FILE_CHUNKS_COUNT

@@ -1,0 +1,24 @@
+{% for field in form %}
+    <div>
+        {% if form.errors %} 
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div>
+                        {{ error|escape }}
+                    </div>   
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div>
+                    {{ error|escape }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        {{ field.label_tag }} {{ field }}
+        {% if field.help_text %}
+            <p>{{ field.help_text|safe }}</p>
+        {% endif %}
+    </div>
+{% endfor %}

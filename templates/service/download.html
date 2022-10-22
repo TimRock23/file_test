@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block title %}Main page{% endblock %}
+
+{% block content%}
+    <a href={% url 'service:index' %}>Main page</a>
+    <h1>My files</h1>
+    <h4>Click on file name to download it<h4>
+    <ul>
+        {% for file in files %}
+            <li>
+                <a href={% url 'service:download' file_id=file.id %}>{{ file.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

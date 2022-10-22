@@ -8,11 +8,16 @@ User = get_user_model()
 
 class UploadedFile(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    dir_path = models.FilePathField(allow_files=False, allow_folders=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='files')
     size = models.PositiveIntegerField(
         validators=[MaxValueValidator(settings.MAX_FILE_SIZE)]
     )
+
+    @property
+    def archive_name(self):
+        name = '.'.join(self.name.split('.')[:-1])
+        return f'{name}.zip'
 
 
 class FileChunk(models.Model):

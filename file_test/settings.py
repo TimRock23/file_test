@@ -5,6 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-q3nj+meypl)ymri+50l0m2m)z9x2u+r2#c13zsmtyrkd!wtqn$'
 
 DEBUG = True
+LOG_LEVEL = 'DEBUG'
 
 ALLOWED_HOSTS = []
 
@@ -111,3 +112,30 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MAX_FILE_CHUNKS_COUNT = 16
 MAX_CHUNK_SIZE = 2 ** 20
 MAX_FILE_SIZE = MAX_CHUNK_SIZE * MAX_FILE_CHUNKS_COUNT
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'my_formatter': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': LOG_LEVEL,
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs.log',
+            'formatter': 'my_formatter',
+        },
+    },
+    'loggers': {
+        'service': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}

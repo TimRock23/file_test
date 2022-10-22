@@ -102,6 +102,8 @@ TEMPLATES = [
     },
 ]
 
+LOGIN_REDIRECT_URL = "/"
+
 STATIC_URL = 'static/'
 
 MEDIA_URL = 'media/'
